@@ -1,0 +1,57 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+
+
+vector<int> rotateLeft(int d, vector<int> arr) {
+    int n = arr.size();
+    d = d % n; // Handle case where d > n
+    vector<int> rotated;
+
+    // Add elements from d to end
+    for (int i = d; i < n; i++) {
+        rotated.push_back(arr[i]);
+    }
+
+    // Add elements from start to d-1
+    for (int i = 0; i < d; i++) {
+        rotated.push_back(arr[i]);
+    }
+
+    return rotated;
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string first_multiple_input_temp;
+    getline(cin, first_multiple_input_temp);
+
+    vector<string> first_multiple_input;
+    stringstream ss(first_multiple_input_temp);
+    string token;
+    while (ss >> token) first_multiple_input.push_back(token);
+
+    int n = stoi(first_multiple_input[0]);
+    int d = stoi(first_multiple_input[1]);
+
+    string arr_temp_temp;
+    getline(cin, arr_temp_temp);
+
+    vector<int> arr;
+    stringstream ss2(arr_temp_temp);
+    int val;
+    while (ss2 >> val) arr.push_back(val);
+
+    vector<int> result = rotateLeft(d, arr);
+
+    for (size_t i = 0; i < result.size(); i++) {
+        fout << result[i];
+        if (i != result.size() - 1) fout << " ";
+    }
+
+    fout << "\n";
+    fout.close();
+    return 0;
+}
