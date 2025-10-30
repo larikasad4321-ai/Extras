@@ -8,12 +8,12 @@ vector<int> rotateLeft(int d, vector<int> arr) {
     d = d % n; // Handle case where d > n
     vector<int> rotated;
 
-    // Add elements from d to end
+   
     for (int i = d; i < n; i++) {
         rotated.push_back(arr[i]);
     }
 
-    // Add elements from start to d-1
+   
     for (int i = 0; i < d; i++) {
         rotated.push_back(arr[i]);
     }
