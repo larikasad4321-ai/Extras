@@ -1,0 +1,26 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+class Solution {
+public:
+    int lengthOfLongestSubstring(string s) {
+        vector<int> index(256, -1);  // store last index of each character
+        int maxLength = 0;
+        int start = 0;  // left boundary of current window
+
+        for (int end = 0; end < s.length(); end++) {
+            // if character already seen, move start pointer
+            if (index[s[end]] >= start) {
+                start = index[s[end]] + 1;
+            }
+
+            // update last seen index
+            index[s[end]] = end;
+
+            // update max length
+            maxLength = max(maxLength, end - start + 1);
+        }
+
+        return maxLength;
+    }
+};
